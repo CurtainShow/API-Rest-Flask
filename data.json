@@ -1,0 +1,254 @@
+{
+    "1": {
+        "name": "Mathématiques pour le Big Data",
+        "start_date": "2022-03-04 14:00:00",
+        "end_date": "2022-03-04 15:30:00",
+        "type": "Cours",
+        "modality": "Distanciel",
+        "teacher": "M. BIANCHINI",
+        "room": null
+    },
+    "2": {
+        "name": "Introduction au machine learning",
+        "start_date": "2022-04-01 14:00:00",
+        "end_date": "2022-04-01 15:30:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "3": {
+        "name": "IA Big Data Day",
+        "start_date": "2022-03-29 14:00:00",
+        "end_date": "2022-03-29 19:00:00",
+        "type": "Autre",
+        "modality": "",
+        "teacher": " ",
+        "room": null
+    },
+    "4": {
+        "name": "Trading d'actifs numériques",
+        "start_date": "2022-03-04 09:45:00",
+        "end_date": "2022-03-04 11:15:00",
+        "type": "Cours",
+        "modality": "Distanciel",
+        "teacher": "M. ROCHE",
+        "room": null
+    },
+    "5": {
+        "name": "Speed Meeting",
+        "start_date": "2022-03-31 14:00:00",
+        "end_date": "2022-03-31 19:00:00",
+        "type": "Autre",
+        "modality": "",
+        "teacher": " ",
+        "room": null
+    },
+    "6": {
+        "name": "Langage Java avancé",
+        "start_date": "2022-03-28 14:00:00",
+        "end_date": "2022-03-28 15:30:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. WAJNBERG",
+        "room": null
+    },
+    "7": {
+        "name": "Framework machine learning",
+        "start_date": "2022-03-29 09:45:00",
+        "end_date": "2022-03-29 11:15:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "8": {
+        "name": "Nosql et big data",
+        "start_date": "2022-03-30 11:30:00",
+        "end_date": "2022-03-30 13:00:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. BEJAOUI",
+        "room": null
+    },
+    "9": {
+        "name": "Jury S1",
+        "start_date": "2022-03-29 08:30:00",
+        "end_date": "2022-03-29 09:30:00",
+        "type": "Autre",
+        "modality": "",
+        "teacher": "M. WAJNBERG",
+        "room": null
+    },
+    "10": {
+        "name": "Introduction au machine learning",
+        "start_date": "2022-04-01 15:45:00",
+        "end_date": "2022-04-01 17:15:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "11": {
+        "name": "Trading d'actifs numériques",
+        "start_date": "2022-03-04 19:15:00",
+        "end_date": "2022-03-04 20:15:00",
+        "type": "Examen",
+        "modality": "",
+        "teacher": " ",
+        "room": null
+    },
+    "12": {
+        "name": "Nosql et big data",
+        "start_date": "2022-03-30 08:00:00",
+        "end_date": "2022-03-30 09:30:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. BEJAOUI",
+        "room": null
+    },
+    "13": {
+        "name": "Langage Java avancé",
+        "start_date": "2022-03-28 15:45:00",
+        "end_date": "2022-03-28 17:15:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. WAJNBERG",
+        "room": null
+    },
+    "14": {
+        "name": "Introduction au machine learning",
+        "start_date": "2022-03-30 17:30:00",
+        "end_date": "2022-03-30 19:00:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "15": {
+        "name": "Langage Java avancé",
+        "start_date": "2022-03-04 17:30:00",
+        "end_date": "2022-03-04 19:00:00",
+        "type": "Cours",
+        "modality": "Distanciel",
+        "teacher": "M. WAJNBERG",
+        "room": null
+    },
+    "16": {
+        "name": "Framework machine learning",
+        "start_date": "2022-03-29 11:30:00",
+        "end_date": "2022-03-29 13:00:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "17": {
+        "name": "Trading d'actifs numériques",
+        "start_date": "2022-03-04 08:00:00",
+        "end_date": "2022-03-04 09:30:00",
+        "type": "Cours",
+        "modality": "Distanciel",
+        "teacher": "M. ROCHE",
+        "room": null
+    },
+    "18": {
+        "name": "Mathématiques pour le Big Data",
+        "start_date": "2022-04-01 09:45:00",
+        "end_date": "2022-04-01 11:15:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. BIANCHINI",
+        "room": null
+    },
+    "19": {
+        "name": "Nosql et big data",
+        "start_date": "2022-03-30 09:45:00",
+        "end_date": "2022-03-30 11:15:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. BEJAOUI",
+        "room": null
+    },
+    "20": {
+        "name": "Framework machine learning",
+        "start_date": "2022-04-01 08:00:00",
+        "end_date": "2022-04-01 09:30:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "21": {
+        "name": "Framework machine learning",
+        "start_date": "2022-03-28 08:00:00",
+        "end_date": "2022-03-28 09:30:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "22": {
+        "name": "Nosql et big data",
+        "start_date": "2022-03-30 14:00:00",
+        "end_date": "2022-03-30 15:30:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. BEJAOUI",
+        "room": null
+    },
+    "23": {
+        "name": "Introduction au machine learning",
+        "start_date": "2022-03-30 15:45:00",
+        "end_date": "2022-03-30 17:15:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "24": {
+        "name": "Mathématiques pour le Big Data",
+        "start_date": "2022-04-01 11:30:00",
+        "end_date": "2022-04-01 13:00:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. BIANCHINI",
+        "room": null
+    },
+    "25": {
+        "name": "Mathématiques pour le Big Data",
+        "start_date": "2022-03-04 15:45:00",
+        "end_date": "2022-03-04 17:15:00",
+        "type": "Cours",
+        "modality": "Distanciel",
+        "teacher": "M. BIANCHINI",
+        "room": null
+    },
+    "26": {
+        "name": "Introduction au machine learning",
+        "start_date": "2022-03-28 09:45:00",
+        "end_date": "2022-03-28 11:15:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    },
+    "27": {
+        "name": "Mathématiques pour le Big Data",
+        "start_date": "2022-03-04 11:30:00",
+        "end_date": "2022-03-04 13:00:00",
+        "type": "Cours",
+        "modality": "Distanciel",
+        "teacher": "M. BIANCHINI",
+        "room": null
+    },
+    "28": {
+        "name": "Introduction au machine learning",
+        "start_date": "2022-03-28 11:30:00",
+        "end_date": "2022-03-28 13:00:00",
+        "type": "Cours",
+        "modality": "Présentiel",
+        "teacher": "M. VIDAL",
+        "room": null
+    }
+}
