@@ -1,8 +1,11 @@
-import json,os,pickle,jwt, flask
+import json, os, pickle, jwt, flask
 from flask import Flask, jsonify, request, make_response
 import pandas as pd
 from datetime import datetime, timedelta
 from functools import wraps
+import logging
+
+logging.basicConfig(filename='logs.log', level=logging.INFO, format='%(asctime)s %(name)s %(message)s')
 
 app = Flask(__name__)
 
@@ -33,9 +36,13 @@ def token_required(func):
             token = request.cookies.get('access-token')
             try:
                 data = jwt.decode(token, 'abcdefg', algorithms=['HS256'])
+                app.logger.info('Token verified')
             except:
+                app.logger.info('Token not valid')
                 return jsonify({'Alert!': 'Token invalid'}), 403
+
         if token==None:
+            app.logger.info('Token missing')
             return jsonify({'Alert!': 'Token is missing!'}), 401
 
         return func(*args, **kwargs)
@@ -49,9 +56,9 @@ def not_null(list_input):
     return json_not_null_data
 
 
-
 @app.route("/")
 def hello_world():
+    app.logger.info('Open API')
     return "<p>Hello, world !</p>"
 
 @app.route("/health")
@@ -64,16 +71,10 @@ def health():
         @return:
             -A message and success code
     """
+    app.logger.info('Get Health status')
     return "API is healthy :3",200
 
-@app.route("/course", methods=["GET", "POST"])
-@token_required
-def course_esgi():
-    with open('data.json', encoding='utf-8') as json_data:
-        data_dict = json.load(json_data)
-    return data_dict
-
-@app.route("/course/grouped", methods=["GET", "POST"])
+@app.route("/compute/grouped", methods=["GET", "POST"])
 @token_required
 def get_or_post_group_by():
     if request.method == "GET":
@@ -81,6 +82,7 @@ def get_or_post_group_by():
         for a in request.get_json():
             list_input.append(request.get_json()[a])
             print(f"{a} : {request.get_json()[a]}")
+            app.logger.info('Get a group by')
         return group_by(list_input)
 
     elif request.method == "POST":
@@ -92,9 +94,10 @@ def get_or_post_group_by():
         new_file = f"{os.getcwd()}/{list_input[2]}"
         with open(new_file, 'w') as json_file:
             json_file.write(output)
+            app.logger.info('Post a group by')
         return new_file
 
-@app.route("/course/not_null", methods=["GET", "POST"])
+@app.route("/compute/not_null", methods=["GET", "POST"])
 @token_required
 def not_null_data():
     if request.method == "GET":
@@ -102,6 +105,7 @@ def not_null_data():
         for a in request.get_json():
             list_input.append(request.get_json()[a])
             print(f"{a} : {request.get_json()[a]}")
+        app.logger.info('Get a not null info')
         return not_null(list_input)
 
     elif request.method == "POST":
@@ -113,6 +117,7 @@ def not_null_data():
         new_file = f"{os.getcwd()}/{list_input[2]}"
         with open(new_file, 'w') as json_file:
             json_file.write(output)
+        app.logger.info('Post a not null info')
         return new_file
 
 @app.route('/login')
@@ -133,6 +138,7 @@ def login():
         token = jwt.encode(payload, 'abcdefg')
         response = flask.Response()
         response.set_cookie('access-token', token)
+        app.logger.info('Logged in')
         return response
     return make_response('Could not verify!', 401, {'WWW-Authenticate': 'Basic realm="Login required"'})
 
