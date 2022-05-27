@@ -1,13 +1,10 @@
-import flask
+import json,os,pickle,jwt, flask
 from flask import Flask, jsonify, request, make_response
-import jwt
-import json,os
 import pandas as pd
 from datetime import datetime, timedelta
 from functools import wraps
 
 app = Flask(__name__)
-
 
 def group_by(list_input) :
     with open(list_input[0], encoding='utf-8') as data:
@@ -19,6 +16,16 @@ def group_by(list_input) :
     return json_grouped_data
 
 def token_required(func):
+    """
+    @describe:
+        function verifying if the Cookie with the JWT Token is present and valid
+    @param:
+        -A function
+    @return:
+        -A message if the cookie is not present and an error code
+        -A message if the cookie's data is not valid and an error code
+        -A decorator
+    """
     @wraps(func)
     def decorated(*args, **kwargs):
         token=None
@@ -49,6 +56,14 @@ def hello_world():
 
 @app.route("/health")
 def health():
+    """
+         @describe:
+            function to verify if the API is alive
+        @param:
+            -No parameters
+        @return:
+            -A message and success code
+    """
     return "API is healthy :3",200
 
 @app.route("/course", methods=["GET", "POST"])
@@ -101,6 +116,15 @@ def not_null_data():
 
 @app.route('/login')
 def login():
+    """
+    @describe:
+        function to log a user and get a cookie with a JWT Token generated inside of it
+    @param:
+        -No parameters
+    @return:
+        -A cookie with the JWT Token
+        -A message if the authentication failed and an error code
+     """
     auth = request.authorization
 
     if auth and auth.password == 'password' and auth.username == 'login':
