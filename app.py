@@ -38,6 +38,10 @@ def token_required(func):
 def hello_world():
     return "<p>Hello, world !</p>"
 
+@app.route("/health")
+def health():
+    return "API is healthy :3",200
+
 @app.route("/course", methods=["GET", "POST"])
 @token_required
 def course_esgi():
