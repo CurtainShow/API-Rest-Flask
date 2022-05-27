@@ -51,14 +51,14 @@ def token_required(func):
 
 def group_by(list_input):
     """
-        @describe:
-            function to get the data grouped by the given column
+    @describe:
+        function to get the data grouped by the given column
 
-        @param:
-            - list_input, list of the file name and the column name
+    @param:
+        - list_input, list of the file name and the column name
 
-        @return:
-            - json_grouped_data, json of the grouped data
+    @return:
+        - json_grouped_data, json of the grouped data
     """
     with open(list_input[0], encoding="utf-8") as data:
         df = pd.read_json(data).T
@@ -76,14 +76,14 @@ def group_by(list_input):
 
 def not_null(list_input):
     """
-        @describe:
-            function to get the data filtered by the non-null values
+    @describe:
+        function to get the data filtered by the non-null values
 
-        @param:
-            - list_input, list of the file name and the column name
+    @param:
+        - list_input, list of the file name and the column name
 
-        @return:
-            - json_not_null_data, json of the data filtered
+    @return:
+        - json_not_null_data, json of the data filtered
     """
     with open(list_input[0], encoding="utf-8") as data:
         df = pd.read_json(data).T
