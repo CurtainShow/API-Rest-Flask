@@ -12,7 +12,6 @@ app = Flask(__name__)
 def group_by(list_input) :
     with open(list_input[0], encoding='utf-8') as data:
         df = pd.read_json(data).T
-    print(df.head())
     df['count'] = df.groupby(list_input[1])[list_input[1]].transform('count')
 
     grouped_data = df[[list_input[1], 'count']].groupby(by=list_input[1]).count().sort_values(by='count', ascending=False)
