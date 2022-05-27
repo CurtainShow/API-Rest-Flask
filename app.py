@@ -14,7 +14,8 @@ def group_by(list_input) :
         df = pd.read_json(data).T
     print(df.head())
     df['count'] = df.groupby(list_input[1])[list_input[1]].transform('count')
-    grouped_data = df[[list_input[1], 'count']].groupby(by=list_input[1]).count()
+
+    grouped_data = df[[list_input[1], 'count']].groupby(by=list_input[1]).count().sort_values(by='count', ascending=False)
     json_grouped_data = grouped_data.to_json()
     return json_grouped_data
 
@@ -28,7 +29,6 @@ def token_required(func):
                 data = jwt.decode(token, 'abcdefg', algorithms=['HS256'])
             except:
                 return jsonify({'Alert!': 'Token invalid'}), 403
-
         if token==None:
             return jsonify({'Alert!': 'Token is missing!'}), 401
 
@@ -47,6 +47,7 @@ def course_esgi():
     return data_dict
 
 @app.route("/course/grouped", methods=["GET", "POST"])
+@token_required
 def get_or_post_group_by():
     if request.method == "GET":
         list_input = []
@@ -75,7 +76,7 @@ def login():
         token = jwt.encode(payload, 'abcdefg')
         response = flask.Response()
         response.set_cookie('access-token', token)
-        return "Logged in successfully",201
+        return response
     return make_response('Could not verify!', 401, {'WWW-Authenticate': 'Basic realm="Login required"'})
 
 app.run()
