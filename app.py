@@ -95,6 +95,7 @@ def get_or_post_group_by():
         return new_file
 
 @app.route("/course/not_null", methods=["GET", "POST"])
+@token_required
 def not_null_data():
     if request.method == "GET":
         list_input = []
