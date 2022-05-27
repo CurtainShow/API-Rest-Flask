@@ -34,6 +34,15 @@ def token_required(func):
         return func(*args, **kwargs)
     return decorated
 
+def not_null(list_input):
+    with open(list_input[0], encoding='utf-8') as data:
+        df = pd.read_json(data).T
+    data_without_non_null = df.dropna(subset=list_input[1])
+    json_not_null_data = data_without_non_null.to_json()
+    return json_not_null_data
+
+
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, world !</p>"
@@ -65,6 +74,26 @@ def get_or_post_group_by():
             list_input.append(request.get_json()[a])
             print(f"{a} : {request.get_json()[a]}")
         output = group_by(list_input)
+        new_file = f"{os.getcwd()}/{list_input[2]}"
+        with open(new_file, 'w') as json_file:
+            json_file.write(output)
+        return new_file
+
+@app.route("/course/not_null", methods=["GET", "POST"])
+def not_null_data():
+    if request.method == "GET":
+        list_input = []
+        for a in request.get_json():
+            list_input.append(request.get_json()[a])
+            print(f"{a} : {request.get_json()[a]}")
+        return not_null(list_input)
+
+    elif request.method == "POST":
+        list_input = []
+        for a in request.get_json():
+            list_input.append(request.get_json()[a])
+            print(f"{a} : {request.get_json()[a]}")
+        output = not_null(list_input)
         new_file = f"{os.getcwd()}/{list_input[2]}"
         with open(new_file, 'w') as json_file:
             json_file.write(output)

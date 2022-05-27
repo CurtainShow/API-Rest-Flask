@@ -1,0 +1,34 @@
+{
+    "1": {
+      "name": "Ellen",
+      "age": "25",
+      "moyenne": "16",
+      "pire_note": "10",
+      "meilleur_note": "20",
+      "permis": null
+    },
+    "2": {
+      "name": "Adrian",
+      "age": "23",
+      "moyenne": "11",
+      "pire_note": "4",
+      "meilleur_note": "15",
+      "permis": "Voiture"
+    },
+    "3": {
+      "name": "Theo",
+      "age": "21",
+      "moyenne": "12",
+      "pire_note": "2",
+      "meilleur_note": "19",
+      "permis": null
+    },
+    "4": {
+      "name": "Allan",
+      "age": "23",
+      "moyenne": "13",
+      "pire_note": "0",
+      "meilleur_note": "15",
+      "permis": "Voiture/Moto"
+    }
+  }
