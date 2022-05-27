@@ -1,9 +1,21 @@
-from flask import Flask
-import json
+from flask import Flask, jsonify, request, make_response
+import jwt
+import json,os
+import pandas as pd
+from datetime import datetime, timedelta
+from functools import wraps
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'abcdefg'
+
+def group_by(list_input) :
+    with open(list_input[0], encoding='utf-8') as data:
+        df = pd.read_json(data).T
+    print(df.head())
+    df['count'] = df.groupby(list_input[1])[list_input[1]].transform('count')
+    grouped_data = df[[list_input[1], 'count']].groupby(by=list_input[1]).count()
+    json_grouped_data = grouped_data.to_json()
+    return json_grouped_data
 
 def token_required(func):
     @wraps(func)
@@ -27,20 +39,37 @@ def hello_world():
     return "<p>Hello, world !</p>"
 
 @app.route("/esgi", methods=["GET", "POST"])
+@token_required
 def hello_esgi():
     return "<p>Hello, ESGI !</p>"
 
 @app.route("/course", methods=["GET", "POST"])
+@token_required
 def course_esgi():
     with open('data.json', encoding='utf-8') as json_data:
         data_dict = json.load(json_data)
     return data_dict
 
-@app.route('/protected')
+@app.route("/course/grouped", methods=["GET", "POST"])
 @token_required
-def protected():
-    return jsonify({'message': 'Only people with a valid token can see this'}), 202
+def get_or_post_group_by():
+    if request.method == "GET":
+        list_input = []
+        for a in request.get_json():
+            list_input.append(request.get_json()[a])
+            print(f"{a} : {request.get_json()[a]}")
+        return group_by(list_input)
 
+    elif request.method == "POST":
+        list_input = []
+        for a in request.get_json():
+            list_input.append(request.get_json()[a])
+            print(f"{a} : {request.get_json()[a]}")
+        output = group_by(list_input)
+        new_file = f"{os.getcwd()}/{list_input[2]}"
+        with open(new_file, 'w') as json_file:
+            json_file.write(output)
+        return new_file
 
 @app.route('/login')
 def login():
@@ -53,3 +82,5 @@ def login():
         return jsonify({'token': token ,'decode': jwt.decode(token, 'abcdefg', algorithms=['HS256'])})
 
     return make_response('Could not verify!', 401, {'WWW-Authenticate': 'Basic realm="Login required"'})
+
+app.run()
