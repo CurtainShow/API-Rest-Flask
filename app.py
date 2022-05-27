@@ -94,6 +94,14 @@ def not_null(list_input):
 
 @app.route("/")
 def hello_world():
+    """
+    @describe:
+        function to return the hello world message
+    @param:
+        -No parameters
+    @return:
+        - A message "Hello World" on the main route
+    """
     app.logger.info("Open API")
     return "<p>Hello, world !</p>"
 
@@ -115,6 +123,14 @@ def health():
 @app.route("/compute/grouped", methods=["GET", "POST"])
 @token_required
 def get_or_post_group_by():
+    """
+    @describe:
+        function to get the data grouped by the given column
+    @param:
+        -No parameters, but parameter is required for group_by() function
+    @return:
+        - A Json file of the data filtered
+    """
     if request.method == "GET":
         list_input = []
         for a in request.get_json():
@@ -139,6 +155,14 @@ def get_or_post_group_by():
 @app.route("/compute/not_null", methods=["GET", "POST"])
 @token_required
 def not_null_data():
+    """
+    @describe:
+        function to get the data filtered by the non-null values
+    @param:
+        -No parameters, but parameter is required for not_null() function
+    @return:
+        - A Json file of the data filtered
+    """
     if request.method == "GET":
         list_input = []
         for a in request.get_json():
