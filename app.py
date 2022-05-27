@@ -74,6 +74,17 @@ def group_by(list_input):
     return json_grouped_data
 
 
+def min_max(list_input):
+    with open(list_input[0], encoding="utf-8") as data:
+        df = pd.read_json(data).T
+    if list_input[2] == "min":
+        stat_on_data = df[["name", list_input[1]]].min()
+    elif list_input[2] == "max":
+        stat_on_data = df[["name", list_input[1]]].max()
+    json_stat_data = stat_on_data.to_json()
+    return json_stat_data
+
+
 def not_null(list_input):
     """
     @describe:
@@ -149,6 +160,40 @@ def get_or_post_group_by():
         with open(new_file, "w") as json_file:
             json_file.write(output)
             app.logger.info("Post a group by")
+        return new_file
+
+
+@app.route("/compute/mean", methods=["GET", "POST"])
+@token_required
+def stats():
+    list_input = ["students.json", "moyenne", "mean"]
+    with open(list_input[0], encoding="utf-8") as data:
+        df = pd.read_json(data).T
+    stat_on_data = df.groupby("name")[list_input[1]].mean()
+
+    print(stat_on_data.mean())
+    return "Mean printed"
+
+
+@app.route("/compute/stats", methods=["GET", "POST"])
+@token_required
+def stat_min_max():
+    if request.method == "GET":
+        list_input = []
+        for a in request.get_json():
+            list_input.append(request.get_json()[a])
+            print(f"{a} : {request.get_json()[a]}")
+        return min_max(list_input)
+
+    elif request.method == "POST":
+        list_input = []
+        for a in request.get_json():
+            list_input.append(request.get_json()[a])
+            print(f"{a} : {request.get_json()[a]}")
+        output = min_max(list_input)
+        new_file = f"{os.getcwd()}/{list_input[2]}"
+        with open(new_file, "w") as json_file:
+            json_file.write(output)
         return new_file
 
 
