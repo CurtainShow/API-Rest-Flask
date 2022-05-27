@@ -75,6 +75,14 @@ def group_by(list_input):
 
 
 def min_max(list_input):
+    """
+    @describe:
+        function to get the max or min value of the given column
+    @param: 
+        - list_input, list of the file name and the column name
+    @return: 
+        - json_min_max_data, json of the grouped data
+    """
     with open(list_input[0], encoding="utf-8") as data:
         df = pd.read_json(data).T
     if list_input[2] == "min":
@@ -166,6 +174,14 @@ def get_or_post_group_by():
 @app.route("/compute/mean", methods=["GET", "POST"])
 @token_required
 def stats():
+    """ 
+    @describe:
+        function to get mean grouped by the given column
+    @param: 
+        -No parameters, but parameter is required for groupby() function
+    @return:
+        - A Json file of the data filtered
+    """
     list_input = ["students.json", "moyenne", "mean"]
     with open(list_input[0], encoding="utf-8") as data:
         df = pd.read_json(data).T
