@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, jsonify, request, make_response
 import jwt
 import json,os
@@ -21,8 +22,8 @@ def token_required(func):
     @wraps(func)
     def decorated(*args, **kwargs):
         token=None
-        if 'access-token' in request.headers:
-            token = request.headers['access-token']
+        if request.cookies.get('access-token'):
+            token = request.cookies.get('access-token')
             try:
                 data = jwt.decode(token, 'abcdefg', algorithms=['HS256'])
             except:
@@ -38,11 +39,6 @@ def token_required(func):
 def hello_world():
     return "<p>Hello, world !</p>"
 
-@app.route("/esgi", methods=["GET", "POST"])
-@token_required
-def hello_esgi():
-    return "<p>Hello, ESGI !</p>"
-
 @app.route("/course", methods=["GET", "POST"])
 @token_required
 def course_esgi():
@@ -51,7 +47,6 @@ def course_esgi():
     return data_dict
 
 @app.route("/course/grouped", methods=["GET", "POST"])
-@token_required
 def get_or_post_group_by():
     if request.method == "GET":
         list_input = []
@@ -78,9 +73,9 @@ def login():
     if auth and auth.password == 'password' and auth.username == 'login':
         payload = {'user': auth.username, 'expiration': str(datetime.utcnow() + timedelta(seconds=60))}
         token = jwt.encode(payload, 'abcdefg')
-
-        return jsonify({'token': token ,'decode': jwt.decode(token, 'abcdefg', algorithms=['HS256'])})
-
+        response = flask.Response()
+        response.set_cookie('access-token', token)
+        return "Logged in successfully",201
     return make_response('Could not verify!', 401, {'WWW-Authenticate': 'Basic realm="Login required"'})
 
 app.run()
